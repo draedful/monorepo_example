@@ -1,0 +1,87 @@
+{
+  "name": "@draedful-private/react",
+  "private": false,
+  "version": "1.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --build",
+      "dependencies": [
+        "clean",
+        "../graph:build"
+      ],
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "dist"
+      ]
+    },
+    "test": {
+      "command": "jest",
+      "dependencies": [
+        "../graph:build"
+      ],
+      "files": [
+        "src/**/*.ts",
+        "jest.config.js"
+      ]
+    },
+    "lint": {
+      "command": "eslint src/**/*.ts",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "typecheck": {
+      "command": "tsc --noEmit",
+      "dependencies": [
+        "../graph:build"
+      ],
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ]
+    },
+    "clean": {
+      "command": "rm -rf dist"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@draedful-private/graph": "^1.0.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0"
+  }
+}

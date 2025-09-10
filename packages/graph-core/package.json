@@ -1,0 +1,71 @@
+{
+  "name": "@draedful-private/graph-core",
+  "private": true,
+  "version": "1.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --build",
+      "dependencies": [
+        "clean"
+      ],
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "dist"
+      ]
+    },
+    "test": {
+      "command": "jest",
+      "files": [
+        "src/**/*.ts",
+        "jest.config.js"
+      ]
+    },
+    "lint": {
+      "command": "eslint src/**/*.ts",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "typecheck": {
+      "command": "tsc --noEmit",
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ]
+    },
+    "clean": {
+      "command": "rm -rf dist"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

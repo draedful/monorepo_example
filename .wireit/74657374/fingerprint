@@ -1,0 +1,1 @@
+{"fullyTracked":false,"platform":"darwin","arch":"arm64","nodeVersion":"v22.11.0","command":"npm run test --workspaces --if-present","extraArgs":[],"clean":true,"files":{},"output":[],"dependencies":{},"env":{}}

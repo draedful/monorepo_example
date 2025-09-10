@@ -1,0 +1,57 @@
+{
+  "name": "root",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "wireit",
+    "test": "wireit",
+    "lint": "wireit",
+    "typecheck": "wireit",
+    "clean": "wireit",
+    "add": "changeset add",
+    "version": "changeset version",
+    "release": "changeset publish",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "wireit": {
+    "build": {
+      "command": "npm run build --workspaces --if-present"
+    },
+    "test": {
+      "command": "npm run test --workspaces --if-present"
+    },
+    "lint": {
+      "command": "npm run lint --workspaces --if-present"
+    },
+    "typecheck": {
+      "command": "npm run typecheck --workspaces --if-present"
+    },
+    "clean": {
+      "command": "npm run clean --workspaces --if-present"
+    }
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.7",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.5.4",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^25.0.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "wireit": "^0.14.12"
+  }
+}

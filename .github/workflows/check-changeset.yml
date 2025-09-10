@@ -11,13 +11,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # We need to fetch all branches and commits so that `changeset` can find the `main` branch.
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Check for changeset
-        uses: changesets/action@v1
-        with:
-          # This action now supports a command that will fail if a changeset is not present for a set of changes.
-          # We want this to fail if a changeset is not present in a PR.
-          # We can achieve this by passing the `changeset status` command.
-          command: 'changeset status --since=origin/main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx changeset status --since=origin/main
